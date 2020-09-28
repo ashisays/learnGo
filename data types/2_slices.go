@@ -4,6 +4,8 @@ A slice is just like an array which is a container to hold elements of the same 
 -Syntax to define a slice is pretty similar to that of an array but without specifying the elements count. Hence s is a slice.
 var s []int
 
+s := arr[1:3]
+
 - slice is a reference to an array
 
 - The capacity of a slice is the number of elements it can hold and len is total element in slice
@@ -50,7 +52,14 @@ func main() {
   
     // Display slice 
     fmt.Println("Slice:", myslice) 
+    myslice = append(myslice, "2", "3", "4")
+    // Display length of the slice 
+    fmt.Printf("Length of the slice: %d", len(myslice)) 
   
+    // Display the capacity of the slice 
+    fmt.Printf("\nCapacity of the slice: %d \n", cap(myslice))
+    
+    myslice = append(myslice, "2", "3", "4", "2", "3", "4")
     // Display length of the slice 
     fmt.Printf("Length of the slice: %d", len(myslice)) 
   
@@ -61,6 +70,12 @@ func main() {
     fmt.Println("Comparison of slices")
     // creating slices 
     s1 := []int{12, 34, 56} 
+    // Display length of the slice 
+    fmt.Printf("Length of the slice: %d", len(s1)) 
+  
+    // Display the capacity of the slice 
+    fmt.Printf("\nCapacity of the slice: %d \n", cap(s1))
+
     var s2 []int
   
     // Checking if the given slice is nil or not 

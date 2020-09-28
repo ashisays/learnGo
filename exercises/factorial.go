@@ -1,7 +1,7 @@
 package main
 import "fmt"
 
-func factorial(x int64) int64{
+func factorial(x int64) int64 {
   var fact int64 =1
   var i int64 = 1
   for ;i <= x; i++ {

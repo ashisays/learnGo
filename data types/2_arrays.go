@@ -17,7 +17,6 @@ func main() {
 // Creating an array of string type  
 // Using var keyword 
 var myarr[3]string
-  
 // Elements are assigned using index 
 myarr[0] = "Hello"
 myarr[1] = "Go"
@@ -46,11 +45,11 @@ arr:= [3][3]string{{"C#", "C", "Python"},
 // Accessing the values of the  
 // array Using for loop 
 fmt.Println("\n Elements of MultiDimensional Array") 
+fmt.Println("lenght of row:" ,len(arr))
 for x:= 0; x < 3; x++{ 
   for y:= 0; y < 3; y++{ 
     fmt.Printf("%s ,",arr[x][y]) 
   } 
   fmt.Printf("\n")
 } 
-
 } 
