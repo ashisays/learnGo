@@ -1,7 +1,11 @@
 package main
 
-import "fmt"
+import (
+  "fmt"
+  "organisation"
+)
 
 func main() {
-	fmt.Println("Hello World")
+	p := organisation.Person{}
+  fmt.Println(p.ID())
 }

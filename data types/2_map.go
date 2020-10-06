@@ -6,7 +6,7 @@ A map is a builtin type in Go that is used to store key-value pairs.
 make(map[type of key]type of value)  
 
 -- It is also possible to initialize a map during the declaration itself.
-  employeeSalary := map[string]int {
+  var employeeSalary = map[string]int {
         "steve": 12000,
         "jamie": 15000,
     }
@@ -37,25 +37,26 @@ package main
 import "fmt"
 
 func main() {
-  m := make(map[string]float64)
+var m map[string]float64
+m = make(map[string]float64)
 
 m["pi"] = 3.14             // Add a new key-value pair
 m["pi"] = 3.1416           // Update value
 fmt.Println(m)             // Print map: "map[pi:3.1416]"
-fmt.Println("length of map",len(m))  
+// fmt.Println("length of map",len(m))  
 
-fmt.Println("\nIteration over map:")
+// // fmt.Println("\nIteration over map:")
 for key, value := range m { // Order not specified 
-    fmt.Println(key, value)
+     fmt.Println(key, value)
 }
 
 v := m["pi"]               // Get value: v == 3.1416
 fmt.Println("\nfetching pi",v)
-v = m["pie"]               // Not found: v == 0 (zero value)
-fmt.Println("fetching pie",v)
+v1 := m["pie"]               // Not found: v == 0 (zero value)
+fmt.Println("fetching pie",v1)
 
-if x, found := m["pi"]; found {
-    fmt.Println("found",x)
+if _ , found := m["pi"]; found {
+     fmt.Println("found",found)
 }                           // Prints "3.1416"
 
 delete(m, "pi")             // Delete a key-value pair

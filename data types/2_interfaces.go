@@ -21,105 +21,133 @@ interface{}
 
 -- Type Assertions: In Go language, type assertion is an operation applied to the value of the interface. Or in other words, type assertion is a process to extract the values of the interface.
 
--- Use of Interface: 
-    -You can use interface when in methods or functions you want to pass different types of argument in them just like Println () function. 
+-- Use of Interface:
+    -You can use interface when in methods or functions you want to pass different types of argument in them just like Println () function.
     -you can also use interface when multiple types implement same interface.
 
 */
 
-// Golang program illustrates how 
-// to implement an interface 
-package main 
-  
+// Golang program illustrates how
+// to implement an interface
+package main
+
 import "fmt"
-  
-// Creating an interface 
-type tank interface { 
-  
-    // Methods 
-    Tarea() float64 
-    Volume() float64 
-} 
-  
-type myvalue struct { 
-    radius float64 
-    height float64 
-} 
-  
-// Implementing methods of 
-// the tank interface 
-func (m myvalue) Tarea() float64 { 
-  
-    return 2*m.radius*m.height + 
-        2*3.14*m.radius*m.radius 
-} 
-  
-func (m myvalue) Volume() float64 { 
-  
-    return 3.14 * m.radius * m.radius * m.height 
-} 
-  
 
-func myfun(a interface{}) { 
-  
-    // Using type switch 
-    switch a.(type) { 
-  
-    case int: 
-        fmt.Println("Type: int, Value:", a.(int)) 
-    case string: 
-        fmt.Println("\nType: string, Value: ", a.(string)) 
-    case float64: 
-        fmt.Println("\nType: float64, Value: ", a.(float64)) 
-    default: 
-        fmt.Println("\nType not found") 
-    } 
-} 
+// Creating an interface
+type tank interface {
 
+	// Methods
+	Tarea() float64
+	Volume() float64
+}
+
+// Creating an interface
+type tank2 interface {
+
+	// Methods
+	Tarea() float64
+	Volume() float64
+  OuterVolume() float64
+}
+
+type myvalue struct {
+	radius float64
+	height float64
+}
+
+// Implementing methods of
+// the tank interface
+func (m myvalue) Tarea() float64 {
+
+	return 2*m.radius*m.height +
+		2*3.14*m.radius*m.radius
+}
+
+func (m myvalue) OuterVolume() float64 {
+
+	return 2*m.radius*m.height +
+		2*3.14*m.radius*m.radius
+}
+
+func (m myvalue) Volume() float64 {
+
+	return 3.14 * m.radius * m.radius * m.height
+}
+
+type square struct {
+	edge float64
+}
+
+// Implementing methods of
+// the tank interface
+func (m square) Tarea() float64 {
+	return 3.0
+}
+
+func (m square) Volume() float64 {
+
+	return 3.14 
+}
+
+func myfun(a interface{}) {
+
+	// Using type switch
+	switch a.(type) {
+
+	case int:
+		fmt.Println("Type: int, Value:", a.(int))
+	case string:
+		fmt.Println("\nType: string, Value: ", a.(string))
+	case float64:
+		fmt.Println("\nType: float64, Value: ", a.(float64))
+	default:
+		fmt.Println("\nType not found")
+	}
+}
 
 /* empty interface
 An interface that has zero methods is called an empty interface. It is represented as interface{}. Since the empty interface has zero methods, all types implement the empty interface.
 */
-func describe(i interface{}) {  
-    fmt.Printf("Type = %T, value = %v\n", i, i)
+func describe(i interface{}) {
+	fmt.Printf("Type = %T, value = %v\n", i, i)
 }
-
 
 /*
 Type assertion is used to extract the underlying value of the interface.
 
-i.(T) is the syntax which is used to get the underlying value of interface i whose concrete type is 
+i.(T) is the syntax which is used to get the underlying value of interface i whose concrete type is
 */
-func assert(i interface{}) {  
-    v, ok := i.(int)
-    fmt.Println(v, ok)
+func assert(i interface{}) {
+	v, found := i.(string)
+	fmt.Println(v, found)
 }
 
-// Main Method 
-func main() { 
-  
-    // Accessing elements of 
-    // the tank interface 
-    var t tank 
-    t = myvalue{10, 14} 
-    fmt.Println("Area of tank :", t.Tarea()) 
-    fmt.Println("Volume of tank:", t.Volume()) 
+// Main Method
+func main() {
 
-    fmt.Println("\n The value of type interface in switch !!")
+	// Accessing elements of
+	// the tank interface
+	var t tank
+	t = myvalue{10, 14}
+  t = square{10}
+	fmt.Println("Area of tank :", t.Tarea())
+	fmt.Println("Volume of tank:", t.Volume())
 
-myfun("GeeksforGeeks") 
-    myfun(67.9) 
-    myfun(true)
+	fmt.Println("\n The value of type interface in switch !!")
 
-    fmt.Println("\nInterface Internal Representaion!!")
-    fmt.Printf("Interface type %T value %v\n", t, t)
+	myfun("GeeksforGeeks")
+	myfun(67.9)
+	myfun(true)
 
-    fmt.Println("\nEmpty Interface!!")
-    describe("Ashish")
-    describe(77)
+	fmt.Println("\nInterface Internal Representaion!!")
+	fmt.Printf("Interface type %T value %v\n", t, t)
 
-    fmt.Println("\n Type Assertions!!")
-    assert(98)
-    assert("Ashish")
+	fmt.Println("\nEmpty Interface!!")
+	describe("Ashish")
+	describe(77)
 
-} 
+	fmt.Println("\n Type Assertions!!")
+	assert(98)
+	assert("Ashish")
+
+}

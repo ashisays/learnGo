@@ -5,6 +5,11 @@ import (
   "reflect"
 )
 
+func init() {
+  fmt.Println("Intialisation of values !!")
+}
+
+
 func main() {
   fmt.Printf("Float Example:")
   a := 20.45 

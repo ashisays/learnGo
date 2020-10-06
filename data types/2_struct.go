@@ -30,6 +30,7 @@ A struct or structure can be compared with the class in the Object-Oriented Prog
   -- Anonymous fields; You can define a struct type without declaring any field names. You have to just define the field data types and Go will use the data type declarations (keywords) as the field names.
     type Employee struct {
 	  firstName, lastName string
+    _ int
 	  salary              int
 	  bool                         // anonymous field
     }
@@ -58,28 +59,39 @@ type Salary struct {
 	Basic, HRA, TA float64
 }
 
-type Employee struct {
-	FirstName, LastName, Email string
-	Age                        int
-	MonthlySalary              []Salary
+type OtherSalary struct {
+	Basic, HRA, TA float64
 }
 
-func (e Employee) EmpInfo() string {
+type Employee struct {
+  Salary
+  OtherSalary
+  FirstName, LastName, Email string
+	Age                        int
+	//MonthlySalary              Salary
+}
+
+// Employee.Basic 
+// Empluee.Salary.Basic
+// Employee.Basic 
+// Empluee.OtherSalary.Basic
+func (e *Employee) EmpInfo() string {
 	fmt.Println(e.FirstName, e.LastName)
-	fmt.Println(e.Age)
-	fmt.Println(e.Email)
+	e.LastName = "ASHISH"
+  fmt.Println(e)
+	// fmt.Println(e.Email)
 	for _, info := range e.MonthlySalary {
 		fmt.Println("===================")
 		fmt.Println(info.Basic)
-		fmt.Println(info.HRA)
-		fmt.Println(info.TA)
+		// fmt.Println(info.HRA)
+		// fmt.Println(info.TA)
 	}
 	return "----------------------"
 }
 
 func main() {
 
-	e := Employee{
+	d := Employee{
 		FirstName: "Mark",
 		LastName:  "Jones",
 		Email:     "mark@gmail.com",
@@ -102,6 +114,7 @@ func main() {
 			},
 		},
 	}
-
-	fmt.Println(e.EmpInfo())
+  p := &d
+	fmt.Println(d.EmpInfo())
+  fmt.Println(p)
 }
