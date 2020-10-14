@@ -16,14 +16,7 @@ import "fmt"
  }
 
   func NeverExit(name string, f func()) {
-	  defer func() {
-      fmt.Println("ASDKDSHDHD")
-		  if v := recover(); v != nil {
-			  // A panic is detected.
-			  log.Println(name, "is crashed. Restart it now.")
-			  go NeverExit(name, f) // restart
-	  	}
-	  }()
+	  defer fmt.Println("ASDKDSHDHD")
 	  f()
   }
   
