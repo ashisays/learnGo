@@ -18,6 +18,7 @@ func (b Book) String() string {
 
 // Declare a Count type which satisfies the fmt.Stringer interface.
 type Count int
+type employee int
 
 func (c Count) String() string {
     return strconv.Itoa(int(c))
