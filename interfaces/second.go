@@ -2,7 +2,6 @@ package main
 
 import (
   "fmt"
-  "reflect"
 )
 
 // interface definition
@@ -39,8 +38,7 @@ func main() {
         fmt.Println("\n********************************\n")
         fmt.Println("Blog is %v",p)
         fmt.Println("\n********************************\n")
-        c := reflect.ValueOf(p).Elem()
-        fmt.Println("Author is : ", c.Author)
+        fmt.Println("Author is : ", p.(blogPost).Author)
         fmt.Println("\n********************************\n")
         test()  // call the test function 
 
