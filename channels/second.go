@@ -1,4 +1,7 @@
 /*
+a is channel
+<- a
+a <- 10
 data := <- a // read from channel a  
 a <- data // write to channel a  
 */
