@@ -1,6 +1,7 @@
 package main
 
 /*
+#include "test.c"
 extern void inCFile();
 */
 import "C"
